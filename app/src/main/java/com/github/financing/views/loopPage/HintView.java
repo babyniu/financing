@@ -1,4 +1,4 @@
-package com.github.financing.views;
+package com.github.financing.views.loopPage;
 
 
 public interface HintView {

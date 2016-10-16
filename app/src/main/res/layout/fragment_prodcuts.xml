@@ -4,7 +4,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/bgGrey">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
@@ -13,6 +12,35 @@
         android:gravity="center"
         android:text="@string/title_product"
         android:background="@color/textRed"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/zhankai"
+            android:textColor="@color/textBlack"
+            android:gravity="center"
+            android:text="全部"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/zhankai"
+            android:textColor="@color/textBlack"
+            android:gravity="center"
+            android:text="期限"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/product_recycler"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
 </LinearLayout>

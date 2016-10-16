@@ -16,10 +16,28 @@
         android:text="@string/title_index"
         android:background="@color/textRed"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgWhile"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/gonggao"/>
         <!-- 公告-->
+        <com.github.financing.views.scrollText.AutoVerticalScrollTextView
+            android:id="@+id/autoscroll_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </com.github.financing.views.scrollText.AutoVerticalScrollTextView>
+    </LinearLayout>
 
         <!-- 轮播图-->
-        <com.github.financing.views.RollPagerView
+        <com.github.financing.views.loopPage.RollPagerView
             android:id="@+id/roll_pager"
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -39,7 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:background="@color/bgWhile"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/index_recycler"
@@ -47,15 +64,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:textColor="@color/textGrey"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/index_warn_text"
-                />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:textColor="@color/textGrey"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="10dp"-->
+                <!--android:text="@string/index_warn_text"-->
+                <!--/>-->
 
         </RelativeLayout>
 

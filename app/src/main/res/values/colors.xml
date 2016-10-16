@@ -15,4 +15,6 @@
     <color name="textRed">#FF0000</color>
 
     <color name="textWhile">#FFFFFF</color>
+
+    <color name="textBlue">#0000FF</color>
 </resources>

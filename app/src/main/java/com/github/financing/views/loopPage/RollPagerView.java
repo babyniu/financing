@@ -1,4 +1,4 @@
-package com.github.financing.views;
+package com.github.financing.views.loopPage;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 

@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.github.financing.views.HintView;
-import com.github.financing.views.RollPagerView;
+import com.github.financing.views.loopPage.HintView;
+import com.github.financing.views.loopPage.RollPagerView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.github.financing.views;
+package com.github.financing.views.loopPage;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
