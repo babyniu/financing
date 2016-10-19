@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.github.financing.adapter.RecyclerAdapter;
 import com.github.financing.base.BaseFragment;
 import com.github.financing.views.loopPage.RollPagerView;
 import com.github.financing.views.scrollText.AutoVerticalScrollTextView;
+
+import java.lang.ref.WeakReference;
 
 /********************************************
  * 作者：Administrator
@@ -31,6 +34,10 @@ public class IndexFragment extends BaseFragment{
     private boolean isRunning=true;
     private int number =0;
 
+    private RollPagerView rollPager;
+    private RecyclerView recyclerView;
+    private View view;
+    private WeakReference<Thread> noticThread;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -47,27 +54,48 @@ public class IndexFragment extends BaseFragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_index, null);
-        RollPagerView rollPager = (RollPagerView) view.findViewById(R.id.roll_pager);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.index_recycler);
-        scrollText = (AutoVerticalScrollTextView) view.findViewById(R.id.autoscroll_text);
-        scrollText.setText(strings[0]);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerAdapter = new RecyclerAdapter(this.getActivity());
-        recyclerView.setAdapter(recyclerAdapter);
+        Log.i("indexFargment","---index:onCreateView开始--");
+        if(view == null){
+            Log.i("indexFargment","------init:handler------"+handler.getClass().getName()+"----------"+handler.hashCode());
+            view = inflater.inflate(R.layout.fragment_index, null);
+            Log.i("indexFargment","-------init:view:fragment_index-----"+view.getClass().getName()+"----------"+view.hashCode());
+            // 图片轮播
+            rollPager = (RollPagerView) view.findViewById(R.id.roll_pager);
+            rollPager.setAnimationDurtion(3000);
+            rollPager.setAdapter(new MyRollPagerAdapter(rollPager));
+            // 文字公告
+            scrollText = (AutoVerticalScrollTextView) view.findViewById(R.id.autoscroll_text);
+            scrollText.setText(strings[0]);
+            // 产品列表
+            recyclerView = (RecyclerView) view.findViewById(R.id.index_recycler);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+            recyclerAdapter = new RecyclerAdapter(this.getActivity());
+            recyclerView.setAdapter(recyclerAdapter);
+        }
 
-        rollPager.setAnimationDurtion(500);
-        rollPager.setAdapter(new MyRollPagerAdapter(rollPager));
-
-        new Thread(){
-            @Override
-            public void run() {
-                while (isRunning){
-                    SystemClock.sleep(3000);
-                    handler.sendEmptyMessage(199);
+        if(noticThread == null){
+            Thread t = new Thread(){
+                @Override
+                public void run() {
+                    while (isRunning){
+                        SystemClock.sleep(5000);
+                        handler.sendEmptyMessage(199);
+                    }
                 }
-            }
-        }.start();
+            };
+            noticThread = new WeakReference<Thread>(t);
+            noticThread.get().start();
+            Log.i("indexFargment", "-------noticThread-----" + noticThread.getClass().getName() + "----------" + noticThread.hashCode());
+        }
+
+        ViewGroup parent = (ViewGroup)view.getParent();
+        if(parent != null){
+            parent.removeView(view);
+        }
+        Log.i("indexFargment","-------thread-------"+noticThread.getClass().getName()+"-----"+noticThread.hashCode());
+        Log.i("indexFargment","-------view------"+view.getClass().getName()+"----------"+view.hashCode());
+        Log.i("indexFargment","-------handler------"+handler.getClass().getName()+"----------"+handler.hashCode());
+        Log.i("indexFargment","--index:onCreateView结束--");
         return view;
     }
 

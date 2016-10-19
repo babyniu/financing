@@ -15,9 +15,17 @@ import com.github.financing.base.BaseFragment;
  * 描述：
  *******************************************/
 public class SortFragment extends BaseFragment {
+    private View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_activity, null);
+        if(view == null){
+            view = inflater.inflate(R.layout.fragment_activity, null);
+        }
+        ViewGroup parent = (ViewGroup)view.getParent();
+        if(parent != null){
+            parent.removeView(view);
+        }
+        return view;
     }
 }

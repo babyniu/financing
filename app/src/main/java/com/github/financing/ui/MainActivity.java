@@ -37,8 +37,11 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     }
 
     private void initView(){
+        Log.i("mainActivity","--initView调用开始--");
         layoutInflater = LayoutInflater.from(this);
+        Log.i("mainActivity","------layouutInflater-----"+layoutInflater.hashCode());
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        Log.i("mainActivity","------mTabHost------"+mTabHost.hashCode());
         mTabHost.setup(this, getSupportFragmentManager(), R.id.homecontent);
         for (int i = 0;i < fragmentArray.length;i++){
             //为每一个Tab按钮设置图标、文字和内容
@@ -49,20 +52,22 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
         }
         mTabHost.getTabWidget().setDividerDrawable(null);
         mTabHost.setOnTabChangedListener(this);
+        Log.i("mainActivity", "--initView调用结束--");
     }
 
     /**
      * 给Tab按钮设置图标和文字
      */
     private View getTabItemView(int index){
+        Log.i("mainActivity","--getTabItemView调用开始--index:"+index);
         View view = layoutInflater.inflate(R.layout.tab_item_view, null);
-
+        Log.i("mainActivity","--------view:tab_item_view-------"+view.hashCode());
         ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
         imageView.setImageResource(mImageViewArray[index]);
 
         TextView textView = (TextView) view.findViewById(R.id.textview);
         textView.setText(mTextViewArray[index]);
-
+        Log.i("mainActivity", "--getTabItemView调用结束--index:"+index);
         return view;
     }
 

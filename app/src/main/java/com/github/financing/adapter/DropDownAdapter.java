@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
 import com.github.financing.R;
+import com.github.financing.utils.DropDownEnum;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -18,20 +19,26 @@ public class DropDownAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> list;
+
     private int checkItemPosition = 0;
+    private DropDownEnum type;
 
     public void setCheckItem(int position) {
         checkItemPosition = position;
         notifyDataSetChanged();
     }
 
-    public DropDownAdapter(Context context, List<String> list) {
+    public DropDownAdapter(Context context,List<String> list,DropDownEnum type) {
         this.context = context;
         this.list = list;
+        this.type = type;
     }
 
     @Override
     public int getCount() {
+        if(list == null){
+            return 0;
+        }
         return list.size();
     }
 
@@ -59,6 +66,9 @@ public class DropDownAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public DropDownEnum getMenuType(){
+        return type;
+    }
     private void fillValue(int position, ViewHolder viewHolder) {
         viewHolder.mText.setText(list.get(position));
         if (checkItemPosition != -1) {
