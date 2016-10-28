@@ -1,4 +1,4 @@
-package com.github.financing.base.http;
+package com.github.financing.request;
 
 import android.content.Context;
 import android.graphics.Bitmap;

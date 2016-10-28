@@ -1,4 +1,4 @@
-package com.github.financing.base.http;
+package com.github.financing.request;
 
 import android.content.Context;
 
@@ -16,10 +16,10 @@ import javax.net.ssl.TrustManagerFactory;
  */
 public class SelfSSLSocketFactory {
 
-
+    public static final String trustStoreFileName = "server.cer";
     public static SSLSocketFactory getSSLSocketFactory(Context context) {
         try {
-            return setCertificates(context, context.getAssets().open(CertificateConfig.trustStoreFileName)) ;
+            return setCertificates(context, context.getAssets().open(trustStoreFileName)) ;
         } catch (IOException e) {
             e.printStackTrace();
         }

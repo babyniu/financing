@@ -2,7 +2,7 @@ package com.github.financing.utils;
 
 import android.content.Context;
 
-public class Util {
+public class CommonUtil {
 	/** 
      * dpתpx
      * 

@@ -1,19 +1,17 @@
 package com.github.financing.ui;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.github.financing.R;
 import com.github.financing.base.BaseActivity;
-import com.github.financing.base.http.DataRequester;
+import com.github.financing.request.DataRequester;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by user on 2016/10/20.
@@ -21,30 +19,15 @@ import java.util.Map;
 public class TestActivity extends BaseActivity {
 
     public static final String HTTP = "";
-    public static final String HTTPS = "https://jzh-test.fuiou.com/jzh/app/500001.action";
-
+    public static final String HTTPS = "https://www.baidu.com";
     public TextView tvResult;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.activity_main);
-
-        initData();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_layout);
         tvResult = (TextView)findViewById(R.id.tv_result);
     }
-
-    public void initData(){
-        Map<String,String> map = new HashMap<>();
-        map.put("mchnt_cd","0001000F0096242");
-        map.put("mchnt_txn_ssn","201610200001021");
-        map.put("login_id","user113");
-        map.put("amt","1000");
-        map.put("page_notify_url","");
-        map.put("back_notify_url","");
-        map.put("signature","");
-    }
-
     private void stringRequestGetHttpExample(){
 
         DataRequester.withHttp(this)
@@ -139,9 +122,4 @@ public class TestActivity extends BaseActivity {
                 })
                 .requestJson();
     }
-
-//    DataRequester.withSelfCertifiedHttps(this)
-//            .setUrl(HTTPS)
-//    .setJsonResponseListener(new YouJsonRequestListener ())
-//            .requestJson();
 }

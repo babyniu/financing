@@ -3,7 +3,6 @@ package com.github.financing.listener;
 import android.view.View;
 
 import com.github.financing.fragment.ProductsFragment;
-import com.github.financing.utils.DropDownEnum;
 
 /**
  * Created by user on 2016/10/18.

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.github.financing.R;
 import com.github.financing.utils.DropDownEnum;
 
-import java.util.Arrays;
 import java.util.List;
 
 

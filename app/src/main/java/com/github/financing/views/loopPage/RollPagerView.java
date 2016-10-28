@@ -20,7 +20,7 @@ import android.widget.Scroller;
 
 import com.github.financing.R;
 import com.github.financing.adapter.LoopPagerAdapter;
-import com.github.financing.utils.Util;
+import com.github.financing.utils.CommonUtil;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -109,7 +109,7 @@ public class RollPagerView extends RelativeLayout implements ViewPager.OnPageCha
 		paddingLeft = (int) type.getDimension(R.styleable.RollViewPager_rollviewpager_hint_paddingLeft, 0);
 		paddingRight = (int) type.getDimension(R.styleable.RollViewPager_rollviewpager_hint_paddingRight, 0);
 		paddingTop = (int) type.getDimension(R.styleable.RollViewPager_rollviewpager_hint_paddingTop, 0);
-		paddingBottom = (int) type.getDimension(R.styleable.RollViewPager_rollviewpager_hint_paddingBottom, Util.dip2px(getContext(), 4));
+		paddingBottom = (int) type.getDimension(R.styleable.RollViewPager_rollviewpager_hint_paddingBottom, CommonUtil.dip2px(getContext(), 4));
 
 		mViewPager = new ViewPager(getContext());
 		mViewPager.setId(R.id.viewpager_inner);

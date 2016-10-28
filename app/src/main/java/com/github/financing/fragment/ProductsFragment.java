@@ -1,6 +1,5 @@
 package com.github.financing.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +17,6 @@ import com.github.financing.adapter.DropDownAdapter;
 import com.github.financing.adapter.RecyclerAdapter;
 import com.github.financing.base.BaseFragment;
 import com.github.financing.listener.TabChangeListener;
-import com.github.financing.utils.DropDownEnum;
 
 import java.util.Arrays;
 

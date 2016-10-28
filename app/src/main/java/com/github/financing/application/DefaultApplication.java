@@ -1,7 +1,6 @@
 package com.github.financing.application;
 
 import android.app.Application;
-import android.net.SSLCertificateSocketFactory;
 
 import com.android.volley.Cache;
 import com.android.volley.RequestQueue;
@@ -9,8 +8,8 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
-import com.github.financing.base.http.SSLCertificateValidation;
-import com.github.financing.base.http.SelfSSLSocketFactory;
+import com.github.financing.request.SSLCertificateValidation;
+import com.github.financing.request.SelfSSLSocketFactory;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
