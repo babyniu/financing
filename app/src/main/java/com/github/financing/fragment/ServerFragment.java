@@ -19,11 +19,21 @@ import com.github.financing.ui.TestActivity;
  *******************************************/
 public class ServerFragment extends BaseFragment {
     private View view;
+    private Button button;
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(view == null){
             view = inflater.inflate(R.layout.fragment_activity, null);
+            button = (Button)view.findViewById(R.id.activity_register);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),TestActivity.class);
+                    getActivity().startActivity(intent);
+
+                }
+            });
         }
 //        Button btn = (Button) view.findViewById(R.id.order_btn);
 //        btn.setOnClickListener(new View.OnClickListener() {
@@ -40,4 +50,5 @@ public class ServerFragment extends BaseFragment {
         }
         return view;
     }
+
 }

@@ -18,7 +18,6 @@ import com.github.financing.adapter.RecyclerAdapter;
 import com.github.financing.base.BaseFragment;
 import com.github.financing.listener.TabChangeListener;
 import com.github.financing.utils.DropEnum;
-
 import java.util.Arrays;
 
 /********************************************
@@ -29,8 +28,8 @@ import java.util.Arrays;
 public class ProductsFragment extends BaseFragment {
     private RecyclerAdapter recyclerAdapter;
     private String headers[] = {"类型", "期限"};
-    private String typeArrays[] = {"不限", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座"};
-    private String orderArrays[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    private String typeArrays[] = {"不限"};
+    private String orderArrays[] = {"不限"};
 
 
     private TabChangeListener tabChangeListener;

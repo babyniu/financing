@@ -11,11 +11,11 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
+
 import com.github.financing.requester.SSLCertificateValidation;
 import com.github.financing.requester.SelfSSLSocketFactory;
 import com.github.financing.utils.NetType;
 
-import java.net.NetworkInterface;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;

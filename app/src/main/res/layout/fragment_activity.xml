@@ -14,7 +14,6 @@
         android:text="@string/title_activity"
         android:background="@color/textRed"
         />
-
     <com.github.financing.views.ReboundView.ReboundScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -58,7 +57,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 />
-
             <TextView
                 android:id="@+id/server_help"
                 android:background="@color/bgWhile"

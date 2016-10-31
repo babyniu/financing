@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 
-import com.github.financing.utils.Util;
+import com.github.financing.utils.CommonUtil;
 
 /**
  * Created by Mr.Jude on 2016/1/10.
@@ -23,8 +23,8 @@ public class ColorPointHintView extends ShapeHintView {
     public Drawable makeFocusDrawable() {
         GradientDrawable dot_focus = new GradientDrawable();
         dot_focus.setColor(focusColor);
-        dot_focus.setCornerRadius(Util.dip2px(getContext(), 4));
-        dot_focus.setSize(Util.dip2px(getContext(), 8), Util.dip2px(getContext(), 8));
+        dot_focus.setCornerRadius(CommonUtil.dip2px(getContext(), 4));
+        dot_focus.setSize(CommonUtil.dip2px(getContext(), 8), CommonUtil.dip2px(getContext(), 8));
         return dot_focus;
     }
 
@@ -32,8 +32,8 @@ public class ColorPointHintView extends ShapeHintView {
     public Drawable makeNormalDrawable() {
         GradientDrawable dot_normal = new GradientDrawable();
         dot_normal.setColor(normalColor);
-        dot_normal.setCornerRadius(Util.dip2px(getContext(), 4));
-        dot_normal.setSize(Util.dip2px(getContext(), 8), Util.dip2px(getContext(), 8));
+        dot_normal.setCornerRadius(CommonUtil.dip2px(getContext(), 4));
+        dot_normal.setSize(CommonUtil.dip2px(getContext(), 8), CommonUtil.dip2px(getContext(), 8));
         return dot_normal;
     }
 }
