@@ -3,7 +3,7 @@ package com.github.financing.listener;
 import android.view.View;
 
 import com.github.financing.fragment.ProductsFragment;
-import com.github.financing.utils.DropDownEnum;
+import com.github.financing.utils.DropEnum;
 
 /**
  * Created by user on 2016/10/18.
@@ -25,9 +25,9 @@ public class TabChangeListener implements View.OnClickListener {
         }else{
             containt.setVisibility(View.VISIBLE);
             if("order".equals(v.getTag())){
-                context.checkMenu(DropDownEnum.order);
+                context.checkMenu(DropEnum.order);
             }else if("type".equals(v.getTag())){
-                context.checkMenu(DropDownEnum.type);
+                context.checkMenu(DropEnum.type);
             }
         }
     }

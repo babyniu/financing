@@ -14,7 +14,7 @@ import com.github.financing.base.BaseActivity;
 import com.github.financing.fragment.IndexFragment;
 import com.github.financing.fragment.PersonalFragment;
 import com.github.financing.fragment.ProductsFragment;
-import com.github.financing.fragment.SortFragment;
+import com.github.financing.fragment.ServerFragment;
 
 public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener{
 
@@ -25,10 +25,10 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     private static final String TAG_3 = "3";
     private static final String TAG_4 = "4";
     // 定义数组存放fragment
-    private final Class fragmentArray[] = {IndexFragment.class, ProductsFragment.class, SortFragment.class, PersonalFragment.class};
+    private final Class fragmentArray[] = {IndexFragment.class, ProductsFragment.class, ServerFragment.class, PersonalFragment.class};
 
     private int mImageViewArray[] = {R.drawable.tab_index_image,R.drawable.tab_product_image,R.drawable.tab_activity_image,R.drawable.tab_personal_image};
-    private String mTextViewArray[] = {"首页","产品","活动","资产"};
+    private String mTextViewArray[] = {"首页","产品","服务","我"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

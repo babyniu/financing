@@ -1,6 +1,5 @@
 package com.github.financing.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +17,7 @@ import com.github.financing.adapter.DropDownAdapter;
 import com.github.financing.adapter.RecyclerAdapter;
 import com.github.financing.base.BaseFragment;
 import com.github.financing.listener.TabChangeListener;
-import com.github.financing.utils.DropDownEnum;
+import com.github.financing.utils.DropEnum;
 
 import java.util.Arrays;
 
@@ -61,8 +60,8 @@ public class ProductsFragment extends BaseFragment {
             typeView = (TextView)view.findViewById(R.id.tab_type);
             typeView.setTag("type");
 
-            orderAdapter = new DropDownAdapter(this.getActivity(), Arrays.asList(orderArrays),DropDownEnum.order) ;
-            typeAdapter = new DropDownAdapter(this.getActivity(),Arrays.asList(typeArrays),DropDownEnum.type) ;
+            orderAdapter = new DropDownAdapter(this.getActivity(), Arrays.asList(orderArrays), DropEnum.order) ;
+            typeAdapter = new DropDownAdapter(this.getActivity(),Arrays.asList(typeArrays), DropEnum.type) ;
 
             containt =  view.findViewById(R.id.containt_frame);
             gridView = (GridView)view.findViewById(R.id.grid_contain);
@@ -73,7 +72,7 @@ public class ProductsFragment extends BaseFragment {
 
                     DropDownAdapter tempAdapter = (DropDownAdapter)gridView.getAdapter();
                     tempAdapter.setCheckItem(position);
-                    if(tempAdapter.getMenuType() == DropDownEnum.order){
+                    if(tempAdapter.getMenuType() == DropEnum.order){
                         orderView.setText(orderArrays[position]);
                     }else {
                         typeView.setText(typeArrays[position]);
@@ -96,21 +95,21 @@ public class ProductsFragment extends BaseFragment {
         return view;
     }
 
-    public void checkMenu(DropDownEnum param){
+    public void checkMenu(DropEnum param){
         Log.i("ProductsFragment","--product:checkMenu开始--");
         if(orderAdapter == null){
             Log.i("ProductsFragment","------创建orderAdapter-----"+orderAdapter.hashCode());
-            orderAdapter = new DropDownAdapter(this.getActivity(), Arrays.asList(orderArrays),DropDownEnum.order) ;
+            orderAdapter = new DropDownAdapter(this.getActivity(), Arrays.asList(orderArrays), DropEnum.order) ;
         }
         if(typeAdapter == null){
             Log.i("ProductsFragment","------创建typeAdapter-----"+typeAdapter.hashCode());
-            typeAdapter = new DropDownAdapter(this.getActivity(),Arrays.asList(typeArrays),DropDownEnum.type) ;
+            typeAdapter = new DropDownAdapter(this.getActivity(),Arrays.asList(typeArrays), DropEnum.type) ;
         }
 
         if(gridView != null){
-            if(DropDownEnum.order == param){
+            if(DropEnum.order == param){
                 gridView.setAdapter(orderAdapter);
-            }else if(DropDownEnum.type == param){
+            }else if(DropEnum.type == param){
                 gridView.setAdapter(typeAdapter);
             }
         }

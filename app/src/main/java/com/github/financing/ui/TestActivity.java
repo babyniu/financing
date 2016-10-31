@@ -1,17 +1,29 @@
 package com.github.financing.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.financing.requester.DataRequester;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.financing.R;
 import com.github.financing.base.BaseActivity;
-import com.github.financing.base.http.DataRequester;
+import com.github.financing.utils.Constants;
+import com.github.financing.utils.Util;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,41 +32,67 @@ import java.util.Map;
  */
 public class TestActivity extends BaseActivity {
 
-    public static final String HTTP = "";
-    public static final String HTTPS = "https://jzh-test.fuiou.com/jzh/app/500001.action";
+    public static final String HTTP = "http://192.168.1.22:8080/api/getDate";
+    public static final String HTTPS = "http://www-1.fuiou.com:9057/jzh/app/500002.action";
 
     public TextView tvResult;
+    public Button testButton;
+    RequestQueue requestQueue;
+    StringRequest sr;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.activity_main);
-
-        initData();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_layout);
         tvResult = (TextView)findViewById(R.id.tv_result);
+        testButton = (Button) findViewById(R.id.test_request);
+        requestQueue = Volley.newRequestQueue(this);
+        sr = new StringRequest(Request.Method.POST,HTTP, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(TestActivity.this, "HTTP/GET,StringRequest successfully.", Toast.LENGTH_SHORT).show();
+                tvResult.setText(response);
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map map = new HashMap();
+                try {
+                     map = objectMapper.readValue(response.getBytes(), Map.class);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                goteWebView(HTTPS,map);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                stringRequestGetHttpExample();
+                requestQueue.add(sr);
+            }
+        });
     }
 
-    public void initData(){
-        Map<String,String> map = new HashMap<>();
-        map.put("mchnt_cd","0001000F0096242");
-        map.put("mchnt_txn_ssn","201610200001021");
-        map.put("login_id","user113");
-        map.put("amt","1000");
-        map.put("page_notify_url","");
-        map.put("back_notify_url","");
-        map.put("signature","");
-    }
 
+    public void goteWebView(String url,Map<String,String> formatData){
+        String postData = Util.makePostHTML(url, formatData);
+        Intent intent = new Intent(this,WebViewActivity.class);
+        intent.putExtra(Constants.INTENT_API_DATA_KEY_DATA, postData);
+        startActivity(intent);
+    }
     private void stringRequestGetHttpExample(){
-
         DataRequester.withHttp(this)
                 .setUrl(HTTP)
-                .setMethod(DataRequester.Method.GET)
+                .setMethod(DataRequester.Method.POST)
                 .setStringResponseListener(new DataRequester.StringResponseListener() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(TestActivity.this, "HTTP/GET,StringRequest successfully.", Toast.LENGTH_SHORT).show();
                         tvResult.setText(response);
+//                        goteWebView("http://www-1.fuiou.com:9057/jzh",);
                     }
                 })
                 .requestString();

@@ -8,9 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.github.financing.R;
-import com.github.financing.utils.DropDownEnum;
+import com.github.financing.utils.DropEnum;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -21,14 +20,14 @@ public class DropDownAdapter extends BaseAdapter {
     private List<String> list;
 
     private int checkItemPosition = 0;
-    private DropDownEnum type;
+    private DropEnum type;
 
     public void setCheckItem(int position) {
         checkItemPosition = position;
         notifyDataSetChanged();
     }
 
-    public DropDownAdapter(Context context,List<String> list,DropDownEnum type) {
+    public DropDownAdapter(Context context,List<String> list,DropEnum type) {
         this.context = context;
         this.list = list;
         this.type = type;
@@ -66,7 +65,7 @@ public class DropDownAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public DropDownEnum getMenuType(){
+    public DropEnum getMenuType(){
         return type;
     }
     private void fillValue(int position, ViewHolder viewHolder) {

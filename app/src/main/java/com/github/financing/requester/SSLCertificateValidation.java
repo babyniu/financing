@@ -1,4 +1,4 @@
-package com.github.financing.base.http;
+package com.github.financing.requester;
 
 import android.util.Log;
 

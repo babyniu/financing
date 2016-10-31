@@ -1,7 +1,9 @@
 package com.github.financing.application;
 
 import android.app.Application;
-import android.net.SSLCertificateSocketFactory;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.android.volley.Cache;
 import com.android.volley.RequestQueue;
@@ -9,8 +11,11 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
-import com.github.financing.base.http.SSLCertificateValidation;
-import com.github.financing.base.http.SelfSSLSocketFactory;
+import com.github.financing.requester.SSLCertificateValidation;
+import com.github.financing.requester.SelfSSLSocketFactory;
+import com.github.financing.utils.NetType;
+
+import java.net.NetworkInterface;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -36,6 +41,7 @@ public class DefaultApplication extends Application{
         super.onCreate();
         mApplication = this;
     }
+
 
     /**
      *单列模式获取application对象
@@ -89,6 +95,30 @@ public class DefaultApplication extends Application{
         }
         return mSelfSslQueue;
     }
+
+    /**
+     * 获取网络类型
+     *    可以使用getsubType获取手机网络的具体运营商的类型
+     */
+    public NetType getNewWorkType(){
+        ConnectivityManager connectMgr = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectMgr.getActiveNetworkInfo();
+        if(networkInfo == null || (!networkInfo.isConnected())){
+            return NetType.NOTHING;
+        }
+        if(networkInfo.getType() == ConnectivityManager.TYPE_WIFI)
+            return NetType.WIFI;
+        else return NetType.MOBILE;
+    }
+
+    /**
+     * 获取手机IP 地址
+     * @return
+     */
+//    public String getPhoneIp(){
+//        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//    }
 
 
 }

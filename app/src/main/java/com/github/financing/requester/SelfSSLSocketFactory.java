@@ -1,6 +1,9 @@
-package com.github.financing.base.http;
+package com.github.financing.requester;
 
 import android.content.Context;
+import android.provider.SyncStateContract;
+
+import com.github.financing.utils.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +19,9 @@ import javax.net.ssl.TrustManagerFactory;
  */
 public class SelfSSLSocketFactory {
 
-
     public static SSLSocketFactory getSSLSocketFactory(Context context) {
         try {
-            return setCertificates(context, context.getAssets().open(CertificateConfig.trustStoreFileName)) ;
+            return setCertificates(context, context.getAssets().open(Constants.trustStoreFileName)) ;
         } catch (IOException e) {
             e.printStackTrace();
         }
