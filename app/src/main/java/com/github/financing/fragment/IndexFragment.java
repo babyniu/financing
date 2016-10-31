@@ -117,7 +117,7 @@ public class IndexFragment extends BaseFragment{
 
         @Override
         public int getRealCount() {
-            return 0;
+            return img.length;
         }
     }
 
